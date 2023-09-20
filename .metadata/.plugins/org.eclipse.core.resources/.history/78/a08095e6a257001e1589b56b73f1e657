@@ -1,0 +1,10 @@
+package es.jllopezalvarez.programacion.ut03.ejemplos;
+
+public class Ejemplo01DeclararVariables {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
