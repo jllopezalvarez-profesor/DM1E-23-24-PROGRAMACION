@@ -1,9 +1,8 @@
 package es.jllopezalvarez.programacion.ut03.ejercicios;
 
 public class Ejercicio01 {
-
+	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		int numeroEntero = 12;
 		double numeroDecimal = 423.323;
 		String nombre = "José Luis";

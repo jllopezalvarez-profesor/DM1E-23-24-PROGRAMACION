@@ -2,18 +2,25 @@ package es.jllopezalvarez.programacion.ut03.ejercicios;
 
 import java.util.Scanner;
 
+/**
+ * Escribir un programa que pregunte al usuario dos números. Con esos dos
+ * números mostrará:
+ * 
+ * <pre>
+ * • La suma de los dos números 
+ * • La resta del primer número menos el segundo 
+ * • La resta del segundo número menos el primero 
+ * • La multiplicación de los dos números 
+ * • La división del primer número por el segundo 
+ * • La división del segundo número por el primero
+ * </pre>
+ * 
+ * Debe mostrar estas operaciones con la forma “La suma de XXX y ZZZ es WWW”.
+ * Usar el método printf de System.out para dar formato a la salida.
+ */
 public class Ejercicio05 {
 
 	public static void main(String[] args) {
-		/*
-		 * Escribir un programa que pregunte al usuario dos números. Con esos dos
-		 * números mostrará: • La suma de los dos números • La resta del primer número
-		 * menos el segundo • La resta del segundo número menos el primero • La
-		 * multiplicación de los dos números • La división del primer número por el
-		 * segundo • La división del segundo número por el primero Debe mostrar estas
-		 * operaciones con la forma “La suma de XXX y ZZZ es WWW”. Usar el método printf
-		 * de System.out para dar formato a la salida.
-		 */
 		Scanner scanner = new Scanner(System.in);
 
 		System.out.print("Introduce el primer número: ");
@@ -32,7 +39,7 @@ public class Ejercicio05 {
 				(double) primerNumero / segundoNumero);
 		System.out.printf("La división de %d y %d es %.2f.\n", segundoNumero, primerNumero,
 				(double) segundoNumero / (double) primerNumero);
-		
+
 		boolean logico = false;
 		System.out.printf("Valor de boolean: %b\n", primerNumero);
 		System.out.printf("Valor de boolean: %s, %s, %s, %s \n", logico, "Hola");
