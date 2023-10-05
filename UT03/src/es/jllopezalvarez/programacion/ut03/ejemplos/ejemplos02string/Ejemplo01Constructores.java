@@ -6,6 +6,7 @@ public class Ejemplo01Constructores {
 	String cadena1 = "Esto es una cadena";
 	// Constructor que recibe otra cadena
 	String cadena2 = new String(cadena1);
+	String cadena3 = cadena2;
 	
 	// Tres formas de crear un StringBuilder (objeto para construir cadenas)
 	// Por defecto
