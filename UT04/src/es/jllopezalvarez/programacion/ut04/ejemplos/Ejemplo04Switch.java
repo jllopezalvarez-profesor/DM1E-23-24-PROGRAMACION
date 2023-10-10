@@ -10,6 +10,8 @@ public class Ejemplo04Switch {
 		System.out.print("Dime el número de mes: ");
 		int mes = scanner.nextInt();
 
+
+
 		switch (mes) {
 		case 1:
 			// Si el usuario ha escrito 1, se ejecuta este bloque de sentencias

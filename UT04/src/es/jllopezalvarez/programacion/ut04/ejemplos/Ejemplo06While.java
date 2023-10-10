@@ -1,4 +1,4 @@
-package es.iesclaradelrey.dm1e2223.ut04.ejemplos;
+package es.jllopezalvarez.programacion.ut04.ejemplos;
 
 import java.util.Scanner;
 
@@ -20,7 +20,6 @@ public class Ejemplo06While {
 		System.out.println("Fin del programa...");
 		
 		
-		sc.close();
 	}
 
 }
