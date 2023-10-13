@@ -2,6 +2,11 @@ package es.jllopezalvarez.programacion.ut04.ejercicios;
 
 import java.util.Scanner;
 
+/*
+ * Mezcla de las versiones A y B. 
+ * De la A: usamos Sustem.out.printf en cada if para mostrar valores.
+ * De la B: Usamos los if dentro de otros if.
+ */
 public class Ejercicio08C {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);

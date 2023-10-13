@@ -2,6 +2,31 @@ package es.jllopezalvarez.programacion.ut04.ejercicios;
 
 import java.util.Scanner;
 
+/*
+ * ################################################################################
+ * Enunciado
+ * ################################################################################
+ * Escribe un programa que pida tres números y los muestre ordenados (de mayor a menor);
+ * 
+ * ################################################################################
+ * Análisis
+ * ################################################################################
+ * Pedimos por teclado tres números, se comparan para mostrarlos ordenados.
+ * Datos de entrada: num1, num2, num3 (entero)
+ * Información de salida: Los tres número ordenados de mayor a menor
+ *   
+ * ################################################################################
+ * Diseño
+ * ################################################################################
+ * 1. Leer num1,num2,num3
+ * 2. Si num1>num2>num3 mostrar num1,num2,num3
+ * 3. Si no, si num2>num1>num3 mostrar num2,num1,num3
+ * 4. Si no, si num2>num3>num1 mostrar num2,num3,num1
+ * 5. Si no, si num3>num2>num1 mostrar num3,num2,num1
+ * 6. Si no, si num3>num1>num2 mostrar num3,num1,num2
+ *  
+ * ################################################################################
+ */
 public class Ejercicio08A {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
