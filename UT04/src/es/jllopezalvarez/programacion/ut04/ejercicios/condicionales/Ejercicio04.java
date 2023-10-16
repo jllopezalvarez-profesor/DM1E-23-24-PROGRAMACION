@@ -1,4 +1,4 @@
-package es.jllopezalvarez.programacion.ut04.ejercicios;
+package es.jllopezalvarez.programacion.ut04.ejercicios.condicionales;
 
 import java.util.Scanner;
 

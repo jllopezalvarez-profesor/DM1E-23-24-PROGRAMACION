@@ -1,4 +1,4 @@
-package es.jllopezalvarez.programacion.ut04.ejercicios;
+package es.jllopezalvarez.programacion.ut04.ejercicios.condicionales;
 
 import java.util.Scanner;
 
@@ -43,11 +43,10 @@ import java.util.Scanner;
  * muestro coste_autobus coste  por alumnos. 
  * 7. Si el número de alumno <= 0 mostrar mensaje de error
  * 
- * En esta versión, en lugar de ifs independientes se usa else.
+ * Esta versión usa if independientes para cada tramo
  */
-
-public class Ejercicio13B {
-	private static final int COSTE_AUTOCAR_MENOS_30_ALUMNOS = 4000;
+public class Ejercicio13A {
+	private static final double COSTE_AUTOCAR_MENOS_30_ALUMNOS = 4000;
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
@@ -64,20 +63,22 @@ public class Ejercicio13B {
 
 			// Definimos varible para coste por alumno. La definimos double porque puede que
 			// sea un cálculo con decimales, si son menos de 30.
-			// En este diseño no hace falta dar un valor inicial al coste, porque siempre se
-			// pasa por un if o por el else en el que se inicializa la variable.
-			double costePorAlumno;
+			// En el diseño de esta solución Java nos obliga a dar un valor inicial al coste
+			// por alumno, porque interpreta que puede que no se entre en ningún if (aunque
+			// no sea así), y la variable costePorAlumno no se inicializaría.
+			double costePorAlumno = 0;
 
 			// Miramos en qué rango cae el número de alumnos para calcular el coste/alumno
-			// En esta versión se simplifican los if, porque cada else tiene implícito que
-			// es lo contrario al if anterior, no hay que incluir esa condición.
 			if (numAlumnos >= 100) {
 				costePorAlumno = 65;
-			} else if (numAlumnos >= 50) {
+			}
+			if (numAlumnos < 100 && numAlumnos >= 50) {
 				costePorAlumno = 70;
-			} else if (numAlumnos >= 30) {
+			}
+			if (numAlumnos < 50 && numAlumnos >= 30) {
 				costePorAlumno = 95;
-			} else {
+			}
+			if (numAlumnos < 30) {
 				costePorAlumno = COSTE_AUTOCAR_MENOS_30_ALUMNOS / numAlumnos;
 			}
 

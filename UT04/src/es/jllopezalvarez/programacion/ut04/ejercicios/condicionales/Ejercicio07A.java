@@ -1,4 +1,4 @@
-package es.jllopezalvarez.programacion.ut04.ejercicios;
+package es.jllopezalvarez.programacion.ut04.ejercicios.condicionales;
 
 import java.util.Scanner;
 
@@ -21,23 +21,18 @@ import java.util.Scanner;
  * En caso contrario se muestra "NO ACEPTADA"
  * Datos de entrada: nota(entero o doble), edad (entero) y sexo (cadena)
  * Información de salida: Mensaje de información
- * 
- * Esta versión usa un if dentro de otro if en lugar de if encadenados. 
- * Es algo más difícil de leer que la versión A.
  *   
  * ################################################################################
  * Diseño
  * ################################################################################
  * 1. Leer la nota, la edad y el sexo
- * 2. Si nota>=5 y edad>=18
- * 2.1. Si sexo=="F" mostrar "ACEPTADA"
- * 2.2. Si no, si sexo=="M" mostrar "POSIBLE"
- * 2.3. Si no, mostrar "No aceptada"
- * 3 Si no se cumple 2, mostrar "No aceptada" 
+ * 2. Si nota>=5, la edad>=18, y el sexo=="F" mostrar "ACEPTADA"
+ * 3. Si no, si la nota>=5, la edad>=18, y el sexo=="M" mostrar "POSIBLE"
+ * 4. En caso contrario, mostrar "NO ACEPTADA"
  *  
  * ################################################################################
  */
-public class Ejercicio07B {
+public class Ejercicio07A {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 
@@ -49,14 +44,10 @@ public class Ejercicio07B {
 		System.out.print("Introduce tu sexo: ");
 		String sexo = scanner.nextLine();
 
-		if ((edad >= 18) && (nota >= 5)) {
-			if (sexo.equals("F")) {
-				System.out.println("ACEPTADA");
-			} else if (sexo.equals("M")) {
-				System.out.println("POSIBLE");
-			} else {
-				System.out.println("NO ACEPTADA");
-			}
+		if ((edad >= 18) && (nota >= 5) && sexo.equals("F")) {
+			System.out.println("ACEPTADA");
+		} else if ((edad >= 18) && (nota >= 5) && sexo.equals("M")) {
+			System.out.println("POSIBLE");
 		} else {
 			System.out.println("NO ACEPTADA");
 		}
