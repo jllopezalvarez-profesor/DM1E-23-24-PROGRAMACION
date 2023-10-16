@@ -8,7 +8,7 @@ package es.jllopezalvarez.programacion.ut04.ejemplos;
  *         valor final), y alternativas para salir usando una variable de
  *         control o "flag".
  */
-public class Ejemplo07Break {
+public class Ejemplo12Break {
 
 	public static void main(String[] args) {
 		int i = 0;

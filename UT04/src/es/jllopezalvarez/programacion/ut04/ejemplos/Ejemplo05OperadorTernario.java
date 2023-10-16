@@ -7,7 +7,7 @@ public class Ejemplo05OperadorTernario {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 
-		// Pedimos dos números, y preguntamos al usuario dos mensajes: uno para cuando
+		// Pedimos un número, y preguntamos al usuario dos mensajes: uno para cuando
 		// el número es mayor o igual que cero, y otro para cuando es menor que cero.
 		System.out.print("Dime un número: ");
 		int numero = scanner.nextInt();

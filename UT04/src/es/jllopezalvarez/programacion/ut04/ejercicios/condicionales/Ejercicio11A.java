@@ -35,17 +35,17 @@ import java.util.Scanner;
  * 4. Si el mes es 1,3,5,7,8,10,12 los dias_del_mes=31
  * 4.1. Si el dia del mes no está entre 1 y 31 a.i., mensaje de fecha incorrecta. 
  * 4.2. Si está, mensaje de fecha correcta
- * 5. Si el mes es 2,4,6,9,11 los dias_del_mes=33
+ * 5. Si el mes es 2,4,6,9,11 los dias_del_mes=30
  * 5.1. Si el dia del mes no está entre 1 y 30 a.i., mensaje de fecha incorrecta. 
  * 5.2. Si está, mensaje de fecha correcta
- * 6. Si el mes es 1,3,5,7,8,10,12 los dias_del_mes dependen del año.
+ * 6. Si el mes es 2 los dias_del_mes dependen del año.
  * 6.1 Si es año bisiesto, los días del mes son 29, si no, 28
  * 6.2. Si el dia del mes no está entre 1 y 28/29 a.i., mensaje de fecha incorrecta. 
  * 6.3. Si está, mensaje de fecha correcta
  *  
  * ################################################################################
  */
-public class Ejercicio11 {
+public class Ejercicio11A {
 
 	private static final int DIAS_EN_MES_LARGO = 31;
 
