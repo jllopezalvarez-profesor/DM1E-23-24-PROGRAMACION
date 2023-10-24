@@ -25,7 +25,7 @@ public class Ejercicio33E {
 			} else {
 				// Empezamos en 2 porque todos los números son divisibles por 1
 				// Llegamos a numero-1, porque no tenemos que probar numero / numero
-				for (int divisor = 3; (divisor < raizNumero) && (!hayDivisor); divisor += 2) {
+				for (int divisor = 3; (divisor <= raizNumero) && (!hayDivisor); divisor += 2) {
 					int resto = numero % divisor;
 					if (resto == 0) {
 						hayDivisor = true;
