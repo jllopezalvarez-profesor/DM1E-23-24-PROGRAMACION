@@ -17,33 +17,35 @@ public class Ejercicio34 {
 		int numero = 2;
 
 		while (cantidadPrimos > 0) {
-			// Probar el numero
-			int raizNumero = (int) Math.sqrt(numero);
-			boolean hayDivisor = false;
-
-			if (numero != 2) {
-				if (numero % 2 == 0) {
-					hayDivisor = true;
-				} else {
-					// Empezamos en 2 porque todos los números son divisibles por 1
-					// Llegamos a numero-1, porque no tenemos que probar numero / numero
-					for (int divisor = 3; (divisor <= raizNumero) && (!hayDivisor); divisor += 2) {
-						int resto = numero % divisor;
-						if (resto == 0) {
-							hayDivisor = true;
-						}
-					}
-				}
-			}
 			// Si es primo resto 1 a cantidadPrimos
-			if (!hayDivisor) {
+			if (esPrimo(numero)) {
 				System.out.println(numero);
 				cantidadPrimos--;
 			} 
-		
 			// Sumo 1 a numeroPrueba
 			numero++;
 		}
 
+	}
+
+	private static boolean esPrimo(int numero) {
+		int raizNumero = (int) Math.sqrt(numero);
+		boolean hayDivisor = false;
+
+		if (numero != 2) {
+			if (numero % 2 == 0) {
+				hayDivisor = true;
+			} else {
+				// Empezamos en 2 porque todos los números son divisibles por 1
+				// Llegamos a numero-1, porque no tenemos que probar numero / numero
+				for (int divisor = 3; (divisor <= raizNumero) && (!hayDivisor); divisor += 2) {
+					int resto = numero % divisor;
+					if (resto == 0) {
+						hayDivisor = true;
+					}
+				}
+			}
+		}
+		return !hayDivisor;
 	}
 }
