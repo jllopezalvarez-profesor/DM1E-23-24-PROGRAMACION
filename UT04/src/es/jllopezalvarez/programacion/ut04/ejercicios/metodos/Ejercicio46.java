@@ -4,21 +4,28 @@ public class Ejercicio46 {
 
 	public static void main(String[] args) {
 
-		
 		System.out.println(getNumCifras(123456));
+		System.out.println(getNumCifras(23));
+		System.out.println(getNumCifras(0));
+		System.out.println(getNumCifras(-234));
+		
+
 	}
 
 	private static int getNumCifras(int numero) {
-		int numeroCifras = 0;
-		
-		String numComoString = "";
-		
-		numComoString = String.valueOf(numero);
-
-		if (numero >0) {
-			numeroCifras = 4;
+		if (numero == 0) {
+			return 1;
 		}
+
+		int numeroCifras = 0;
+
+		while (numero != 0) {
+			numero = numero / 10;
+			numeroCifras++;
+		}
+
 		return numeroCifras;
+
 	}
 
 }
