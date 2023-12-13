@@ -6,7 +6,8 @@ public class Persona {
 	private static final int PESO_DEFECTO = 0;
 	private static final int ALTURA_DEFECTO = 0;
 	private static final int EDAD_DEFECTO = 0;
-	private static final Sexo SEXO_DEFECTO = Sexo.M;
+	private static final Sexo SEXO_DEFECTO = Sexo.MUJER;
+	private static final int EDAD_MAYORIA_EDAD = 18;
 
 	private String nombre;
 	private int edad;
@@ -100,12 +101,26 @@ public class Persona {
 		int numero = rnd.nextInt(100_000_000);
 		// char letra = (char) rnd.nextInt(65, 90 + 1);
 		char letra = (char) rnd.nextInt((int) 'A', (int) 'Z' + 1);
-		
-		//String dni = String.valueOf(numero);
-		
+
+		// String dni = String.valueOf(numero);
+
 		String dni = String.format("%08d", numero);
 		dni = dni + letra;
 		return dni;
 	}
 
+	public boolean esMayorEdad() {
+		return this.edad >= EDAD_MAYORIA_EDAD;
+	}
+
+	public int calcularImc() {
+		double imc = this.peso / Math.pow((double) this.altura / 100, 2);
+		if (imc < 20) {
+			return -1;
+		}
+		if (imc > 25) {
+			return 1;
+		}
+		return 0;
+	}
 }
