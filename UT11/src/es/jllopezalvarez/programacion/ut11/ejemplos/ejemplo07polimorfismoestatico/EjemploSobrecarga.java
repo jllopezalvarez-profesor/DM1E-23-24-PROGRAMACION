@@ -2,6 +2,11 @@ package es.jllopezalvarez.programacion.ut11.ejemplos.ejemplo07polimorfismoestati
 
 public class EjemploSobrecarga {
 
+	// El polimorfismo estático se produce cuando se sobrecargan métodos.
+	// El compilador de Java sabe, antes de arrancar el programa, mientras
+	// está compilando, que versión (que forma) de las que tiene el método
+	// debe utilizar.
+	
 	public void metodo() {
 		System.out.println("En sobrecarga 1");
 	}

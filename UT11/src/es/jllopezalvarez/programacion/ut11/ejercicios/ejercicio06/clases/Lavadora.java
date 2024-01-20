@@ -30,7 +30,7 @@ public class Lavadora extends Electrodomestico {
 	public double getPrecioFinal() {
 		double preciofinal = super.getPrecioFinal();
 		if (this.carga > 8) {
-			preciofinal += 50;
+			preciofinal += IncrementosPrecio.INCREMENTO_ALTA_CARGA;
 		}
 		return preciofinal;
 	}

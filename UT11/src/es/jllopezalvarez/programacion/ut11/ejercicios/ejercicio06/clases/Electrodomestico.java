@@ -70,17 +70,17 @@ public class Electrodomestico {
 	private double calcularIncrementoPorConsumo() {
 		switch (this.consumo) {
 		case A:
-			return 100;
+			return IncrementosPrecio.INCREMENTO_CONSUMO_A;
 		case B:
-			return 80;
+			return IncrementosPrecio.INCREMENTO_CONSUMO_B;
 		case C:
-			return 60;
+			return IncrementosPrecio.INCREMENTO_CONSUMO_C;
 		case D:
-			return 50;
+			return IncrementosPrecio.INCREMENTO_CONSUMO_D;
 		case E:
-			return 30;
+			return IncrementosPrecio.INCREMENTO_CONSUMO_E;
 		case F:
-			return 10;
+			return IncrementosPrecio.INCREMENTO_CONSUMO_F;
 		default:
 			throw new RuntimeException("Valor no válido en enumerado de consumo");
 		}
