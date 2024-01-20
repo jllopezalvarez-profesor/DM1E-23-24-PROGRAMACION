@@ -14,22 +14,25 @@ public class Electrodomestico {
 	public Electrodomestico() {
 		this(PRECIO_BASE_DEFECTO, COLOR_DEFECTO, CONSUMO_DEFECTO, PESO_DEFECTO);
 
-//		this.precioBase = PRECIO_BASE_DEFECTO;
-//		this.color = COLOR_DEFECTO;
-//		this.consumo = CONSUMO_DEFECTO;
-//		this.pesoKg = PESO_DEFFECTO;
+		// Alternativa al uso de this, válida pero menos concisa
+		// this.precioBase = PRECIO_BASE_DEFECTO;
+		// this.color = COLOR_DEFECTO;
+		// this.consumo = CONSUMO_DEFECTO;
+		// this.pesoKg = PESO_DEFECTO;
 	}
 
 	public Electrodomestico(double precioBase, double pesoKg) {
 		this(precioBase, COLOR_DEFECTO, CONSUMO_DEFECTO, pesoKg);
 
-//		this.precioBase = precioBase;
-//		this.color = COLOR_DEFECTO;
-//		this.consumo = CONSUMO_DEFECTO;
-//		this.pesoKg = pesoKg;
+		// Alternativa al uso de this, válida pero menos concisa
+		// this.precioBase = precioBase;
+		// this.color = COLOR_DEFECTO;
+		// this.consumo = CONSUMO_DEFECTO;
+		// this.pesoKg = pesoKg;
 	}
 
 	public Electrodomestico(double precioBase, Color color, Consumo consumo, double pesoKg) {
+		// A este constructor es al que llaman el resto de constructores de la clase
 		this.precioBase = precioBase;
 		this.color = color;
 		this.consumo = consumo;
@@ -39,11 +42,11 @@ public class Electrodomestico {
 	double getPrecioBase() {
 		return precioBase;
 	}
-	
+
 	public double getPesoKg() {
 		return pesoKg;
 	}
-	
+
 	public double getPrecioFinal() {
 		double precioFinal = this.precioBase;
 		precioFinal += calcularIncrementoPorConsumo();
@@ -53,15 +56,15 @@ public class Electrodomestico {
 
 	private double calcularIncrementoPorPeso() {
 		if (this.pesoKg >= 80) {
-			return 100;
+			return IncrementosPrecio.INCREMENTO_PESO_80_MAS;
 		}
 		if (this.pesoKg >= 50) {
-			return 80;
+			return IncrementosPrecio.INCREMENTO_PESO_50_80;
 		}
 		if (this.pesoKg >= 20) {
-			return 50;
+			return IncrementosPrecio.INCREMENTO_PESO_20_50;
 		}
-		return 10;
+		return IncrementosPrecio.INCREMENTO_PESO_0_20;
 	}
 
 	private double calcularIncrementoPorConsumo() {
@@ -82,7 +85,5 @@ public class Electrodomestico {
 			throw new RuntimeException("Valor no válido en enumerado de consumo");
 		}
 	}
-
-
 
 }

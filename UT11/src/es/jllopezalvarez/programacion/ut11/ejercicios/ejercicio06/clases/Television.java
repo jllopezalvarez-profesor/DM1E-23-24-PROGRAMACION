@@ -41,14 +41,12 @@ public class Television extends Electrodomestico {
 
 	private double calcularIncrementoPorPulgadas() {
 		if (this.resolucionPulgadas > 65) {
-			return this.getPrecioBase() * 0.3;
+			return this.getPrecioBase() * IncrementosPrecio.FACTOR_INCREMENTO_PULGADAS;
 		}
 		return 0;
 	}
 
 	private double calcularIncrementoPorSintonizador() {
-		return this.sintonizadorTdt ? 50 : 0;
+		return this.sintonizadorTdt ? IncrementosPrecio.INCREMENTO_TDT2 : 0;
 	}
-
-
 }
