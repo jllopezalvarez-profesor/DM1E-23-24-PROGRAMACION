@@ -1,14 +1,14 @@
 package es.jllopezalvarez.programacion.ut11.ejercicios.ejercicio08.figuras;
 
 public class Triangulo extends Figura {
-	
+	private static final int NUM_LADOS = 3;
+
 	private double ladoA;
 	private double ladoB;
 	private double ladoC;
 
-	
-	
 	public Triangulo(double ladoA, double ladoB, double ladoC) {
+		super(NUM_LADOS);
 		this.ladoA = ladoA;
 		this.ladoB = ladoB;
 		this.ladoC = ladoC;
@@ -16,14 +16,14 @@ public class Triangulo extends Figura {
 
 	@Override
 	public double perimetro() {
-		// TODO Auto-generated method stub
-		return 0;
+		return ladoA + ladoB + ladoC;
 	}
 
 	@Override
 	public double area() {
-		// TODO Auto-generated method stub
-		return 0;
+		double semiPerimetro = this.perimetro() / 2;
+		return Math.sqrt(semiPerimetro * (semiPerimetro - ladoA) * (semiPerimetro - ladoB) * (semiPerimetro - ladoC));
 	}
+
 
 }

@@ -2,10 +2,14 @@ package es.jllopezalvarez.programacion.ut11.ejercicios.ejercicio08.figuras;
 
 public abstract class Paralelogramo extends Figura {
 
+	private static final int NUM_LADOS = 4;
+
+	
 	private double base;
 	private double altura;
 
 	public Paralelogramo(double base, double altura) {
+		super(NUM_LADOS);
 		this.base = base;
 		this.altura = altura;
 	}
@@ -24,5 +28,6 @@ public abstract class Paralelogramo extends Figura {
 	double getBase() {
 		return base;
 	}
+	
 
 }
