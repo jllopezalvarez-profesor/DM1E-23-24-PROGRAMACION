@@ -1,4 +1,4 @@
-package es.jllopezalvarez.programacion.ut11.ejercicios.ejercicio08.figuras;
+package es.jllopezalvarez.programacion.ut11.ejercicios.ejercicio09.figuras;
 
 public class Triangulo extends Figura {
 	private double ladoA;

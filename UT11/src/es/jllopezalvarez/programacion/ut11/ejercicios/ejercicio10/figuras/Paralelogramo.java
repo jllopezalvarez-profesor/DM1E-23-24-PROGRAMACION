@@ -1,6 +1,8 @@
-package es.jllopezalvarez.programacion.ut11.ejercicios.ejercicio08.figuras;
+package es.jllopezalvarez.programacion.ut11.ejercicios.ejercicio10.figuras;
 
 public abstract class Paralelogramo extends Figura {
+	private static final int NUM_LADOS = 4;
+
 	private double base;
 	private double altura;
 
@@ -24,5 +26,9 @@ public abstract class Paralelogramo extends Figura {
 		return base;
 	}
 	
+	@Override
+	public int getNumLados() {
+		return NUM_LADOS;
+	}
 
 }

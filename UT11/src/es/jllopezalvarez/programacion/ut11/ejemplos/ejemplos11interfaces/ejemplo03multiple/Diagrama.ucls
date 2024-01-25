@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <interface id="1" language="java" 
+    name="es.jllopezalvarez.programacion.ut11.ejemplos.ejemplos11interfaces.ejemplo03multiple.InterfaceA" project="UT11" 
+    file="/UT11/src/es/iesclaradelrey/dm1e2223/ut11/ejemplos/ejemplos11interfaces/ejemplo03multiple/InterfaceA.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="66" width="141" x="222" y="179"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="2" language="java" 
+    name="es.jllopezalvarez.programacion.ut11.ejemplos.ejemplos11interfaces.ejemplo03multiple.InterfaceB" project="UT11" 
+    file="/UT11/src/es/iesclaradelrey/dm1e2223/ut11/ejemplos/ejemplos11interfaces/ejemplo03multiple/InterfaceB.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="66" width="141" x="41" y="179"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="3" language="java" 
+    name="es.jllopezalvarez.programacion.ut11.ejemplos.ejemplos11interfaces.ejemplo03multiple.ClaseQueImplementa" 
+    project="UT11" 
+    file="/UT11/src/es/iesclaradelrey/dm1e2223/ut11/ejemplos/ejemplos11interfaces/ejemplo03multiple/ClaseQueImplementa.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="204" y="344"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <realization id="4">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="2"/>  
+  </realization>  
+  <realization id="5">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <classifier-display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

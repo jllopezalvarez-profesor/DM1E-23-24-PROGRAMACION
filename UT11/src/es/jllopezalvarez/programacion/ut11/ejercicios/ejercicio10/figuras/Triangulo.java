@@ -1,6 +1,7 @@
-package es.jllopezalvarez.programacion.ut11.ejercicios.ejercicio08.figuras;
+package es.jllopezalvarez.programacion.ut11.ejercicios.ejercicio10.figuras;
 
 public class Triangulo extends Figura {
+	private static final int NUM_LADOS = 3;
 	private double ladoA;
 	private double ladoB;
 	private double ladoC;
@@ -22,5 +23,9 @@ public class Triangulo extends Figura {
 		return Math.sqrt(semiPerimetro * (semiPerimetro - ladoA) * (semiPerimetro - ladoB) * (semiPerimetro - ladoC));
 	}
 
+	@Override
+	public int getNumLados() {
+		return NUM_LADOS;
+	}
 
 }
