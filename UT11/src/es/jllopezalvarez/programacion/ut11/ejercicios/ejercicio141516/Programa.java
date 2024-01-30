@@ -1,6 +1,7 @@
 package es.jllopezalvarez.programacion.ut11.ejercicios.ejercicio141516;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Locale;
 
@@ -41,13 +42,20 @@ public class Programa {
 		// Ejercicio 16
 		Persona[] personas = new Persona[10];
 		for (int i = 0; i < personas.length; i++) {
-			personas[i] = new Persona(faker.name().firstName(),
+			personas[i] = new Persona(faker.random().nextInt(20, 23),  faker.name().firstName(),
 					faker.name().lastName());
 		}
 		
 		System.out.println(Arrays.toString(personas));
 
+		System.out.println(personas[0].compareTo(personas[1]));
+		
+		//Comparable<Persona> c = (Comparable<Persona>)personas[0];
+		
+		
 		Arrays.sort(personas);
-	}
+		System.out.println(Arrays.toString(personas));
+		
+			
 
 }
