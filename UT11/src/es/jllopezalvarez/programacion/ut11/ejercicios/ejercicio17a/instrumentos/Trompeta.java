@@ -1,4 +1,4 @@
-package es.jllopezalvarez.programacion.ut11.ejercicios.ejercicio17a;
+package es.jllopezalvarez.programacion.ut11.ejercicios.ejercicio17a.instrumentos;
 
 public class Trompeta extends Viento {
 
@@ -18,6 +18,11 @@ public class Trompeta extends Viento {
 	@Override
 	public void parar() {
 		System.out.printf("El %s de %s deja de tocar.\n", NOMBRE_INSTRUMENTO, this.getPropietario());
+	}
+	@Override
+	public String toString() {
+		return String.format("Trompeta - Propietario: %s - Dificultad: %d - Material: %s\n", this.getPropietario(),
+				this.getDificultad(), this.getMaterial());
 	}
 
 }

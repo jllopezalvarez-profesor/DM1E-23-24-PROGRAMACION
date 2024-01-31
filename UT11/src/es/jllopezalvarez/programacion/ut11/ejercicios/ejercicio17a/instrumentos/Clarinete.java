@@ -1,4 +1,4 @@
-package es.jllopezalvarez.programacion.ut11.ejercicios.ejercicio17a;
+package es.jllopezalvarez.programacion.ut11.ejercicios.ejercicio17a.instrumentos;
 
 public class Clarinete extends Viento {
 
@@ -19,5 +19,9 @@ public class Clarinete extends Viento {
 	public void parar() {
 		System.out.printf("El %s de %s deja de tocar.\n", NOMBRE_INSTRUMENTO, this.getPropietario());
 	}
-
+	@Override
+	public String toString() {
+		return String.format("Clarinete - Propietario: %s - Dificultad: %d - Material: %s\n", this.getPropietario(),
+				this.getDificultad(), this.getMaterial());
+	}
 }

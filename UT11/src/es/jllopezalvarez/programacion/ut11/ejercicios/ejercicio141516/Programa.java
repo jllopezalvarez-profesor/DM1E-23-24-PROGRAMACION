@@ -56,6 +56,6 @@ public class Programa {
 		Arrays.sort(personas);
 		System.out.println(Arrays.toString(personas));
 		
-			
+	}
 
 }

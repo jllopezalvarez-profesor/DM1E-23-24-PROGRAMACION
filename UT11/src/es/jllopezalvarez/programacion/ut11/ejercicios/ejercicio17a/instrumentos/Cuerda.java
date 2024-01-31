@@ -1,4 +1,4 @@
-package es.jllopezalvarez.programacion.ut11.ejercicios.ejercicio17a;
+package es.jllopezalvarez.programacion.ut11.ejercicios.ejercicio17a.instrumentos;
 
 public abstract class Cuerda extends Instrumento{
 	private final int numCuerdas;

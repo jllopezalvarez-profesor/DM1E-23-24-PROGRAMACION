@@ -1,4 +1,4 @@
-package es.jllopezalvarez.programacion.ut11.ejercicios.ejercicio17a;
+package es.jllopezalvarez.programacion.ut11.ejercicios.ejercicio17a.instrumentos;
 
 public class Timbales extends Percusion {
 	private static final int DIFICULTAD = 6;
@@ -16,5 +16,10 @@ public class Timbales extends Percusion {
 	@Override
 	public void parar() {
 		System.out.printf("El %s de %s deja de tocar.\n", NOMBRE_INSTRUMENTO, this.getPropietario());
+	}
+	@Override
+	public String toString() {
+		return String.format("Timbales - Propietario: %s - Dificultad: %d\n", this.getPropietario(),
+				this.getDificultad());
 	}
 }

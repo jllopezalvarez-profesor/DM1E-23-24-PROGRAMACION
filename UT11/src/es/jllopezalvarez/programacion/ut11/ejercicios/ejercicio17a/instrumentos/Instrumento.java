@@ -1,4 +1,4 @@
-package es.jllopezalvarez.programacion.ut11.ejercicios.ejercicio17a;
+package es.jllopezalvarez.programacion.ut11.ejercicios.ejercicio17a.instrumentos;
 
 public abstract class Instrumento {
 	private final String propietario;
@@ -21,8 +21,8 @@ public abstract class Instrumento {
 
 	public abstract void parar();
 
-	boolean esMasDificil(Instrumento other) {
+	public boolean esMasDificil(Instrumento other) {
 		return this.dificultad > other.dificultad;
 	}
-
+	
 }
