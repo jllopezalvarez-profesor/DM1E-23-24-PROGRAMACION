@@ -39,7 +39,7 @@ public class Programa {
 		
 		
 		
-		// Prueba del atributo color, que no debería ser estático pero lo hemos hecho
+		// ProductDto del atributo color, que no debería ser estático pero lo hemos hecho
 		// mal intencionadamente.
 		System.out.printf("El color del coche %s es %s\n", c1.getMatricula(), c1.getColor());
 		System.out.printf("El color del coche %s es %s\n", c2.getMatricula(), c2.getColor());
