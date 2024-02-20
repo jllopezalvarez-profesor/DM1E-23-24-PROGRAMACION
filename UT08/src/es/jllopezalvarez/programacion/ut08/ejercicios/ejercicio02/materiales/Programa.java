@@ -31,12 +31,18 @@ public class Programa {
 		case "A":
 			// TODO Listar los alumnos en la lista. Mostrar sólo DNI, nombre y apellidos, no
 			// todos los datos. Crear método si se considera que será más claro.
+
 			break;
 		case "B":
 			Alumno alumno = pedirAlumnoUsuario();
 			// TODO Añadir alumno a la lista de alumnos. Antes comprobar si el alumno
 			// existe. Si existe avisar del problema, y no añadirlo. Se considera que existe
 			// si hay otro alumno con el mismo DNI, aunque otros atributos no sean iguales.
+
+			// Buscar el alumno en la lista --> Contains // indexOf
+			// Para que contains e indexOf funcionen hay que sobrescribir equals, y al
+			// sobrescribir equals hay que sobrecribir hashCode
+
 			break;
 		case "C":
 			System.out.print("Introduce el DNI del alumno que quieres eliminar: ");
@@ -65,6 +71,15 @@ public class Programa {
 		Alumno alumno = null;
 		// TODO Pedir datos de alumno, crear y devolver nuevo objeto Alumno con los
 		// datos recogidos.
+		// Pedir DNI
+		// Pedir nombre
+		// Pedir apellido
+		// Pedir CICLO --> Convertir con CicloFormativo.valueOf
+		// Pedir CURSO --> Convertir con Curso.valueOf
+		// Pedir fecha nacimiento como YYYY-MM-DD y convertir con LocalDate.parse
+
+		// Crear nuevo alumno y devolverlo
+
 		return alumno;
 	}
 
