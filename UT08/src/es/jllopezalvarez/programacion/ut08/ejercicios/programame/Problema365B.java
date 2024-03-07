@@ -53,6 +53,6 @@ public class Problema365B {
 		}
 		int tiempoTotal = numTotalRegalos * 2;
 
-		System.out.printf("El tiempo total invertido por Papa Noel es de %d minutos.\n", tiempoTotal);
+		System.out.printf("El tiempo total invertido por el hermano de Aitor es de %d minutos.\n", tiempoTotal);
 	}
 }
