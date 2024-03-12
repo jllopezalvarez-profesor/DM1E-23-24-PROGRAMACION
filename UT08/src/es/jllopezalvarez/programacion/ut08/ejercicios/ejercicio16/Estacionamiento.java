@@ -11,6 +11,9 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.TreeSet;
 
+import es.jllopezalvarez.programacion.ut08.ejercicios.ejercicio16.exceptions.VehiculoEnColaNoPuedeSalirException;
+import es.jllopezalvarez.programacion.ut08.ejercicios.ejercicio16.exceptions.VehiculoNoEstacionadoException;
+import es.jllopezalvarez.programacion.ut08.ejercicios.ejercicio16.exceptions.VehiculoYaEnColaException;
 import es.jllopezalvarez.programacion.ut08.ejercicios.ejercicio16.exceptions.VehiculoYaEstacionadoException;
 
 public class Estacionamiento {
@@ -40,7 +43,7 @@ public class Estacionamiento {
 
 		// Comprobar si ya está esperando en la cola
 		if (esperando.contains(matricula)) {
-			throw new IllegalStateException(
+			throw new VehiculoYaEnColaException(
 					String.format("El vehículo con la matrícula %s está esperando en la cola", matricula));
 		}
 
@@ -62,12 +65,12 @@ public class Estacionamiento {
 
 	public double retirarVehiculo(String matricula) {
 		if (!estacionados.containsKey(matricula) && !esperando.contains(matricula)) {
-			throw new IllegalArgumentException(
+			throw new VehiculoNoEstacionadoException(
 					String.format("El vehículo con matrícula %s no está en el estacionamiento", matricula));
 		}
 
 		if (esperando.contains(matricula)) {
-			throw new IllegalStateException(String.format(
+			throw new VehiculoEnColaNoPuedeSalirException(String.format(
 					"No se puede retirar el vehículo con matrícula %s porque no ha accedido aún al estacionamiento",
 					matricula));
 		}
@@ -99,6 +102,10 @@ public class Estacionamiento {
 	public Collection<String> getMatriculasEstacionados() {
 
 		return Collections.unmodifiableCollection(new TreeSet<>(estacionados.keySet()));
+	}
+
+	public boolean estaEstacionado(String matricula) {
+		return estacionados.containsKey(matricula);
 	}
 
 }
