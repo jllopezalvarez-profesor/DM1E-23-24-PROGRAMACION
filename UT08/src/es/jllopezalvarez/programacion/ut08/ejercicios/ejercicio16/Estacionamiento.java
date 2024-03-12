@@ -11,6 +11,8 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.TreeSet;
 
+import es.jllopezalvarez.programacion.ut08.ejercicios.ejercicio16.exceptions.VehiculoYaEstacionadoException;
+
 public class Estacionamiento {
 	private final int numPlazas;
 	private final int numPlazasCola;
@@ -32,7 +34,7 @@ public class Estacionamiento {
 	public ResultadoEstacionamiento estacionarVehiculo(String matricula) {
 		// Comprobar si ya está estacionado
 		if (estacionados.containsKey(matricula)) {
-			throw new IllegalArgumentException(
+			throw new VehiculoYaEstacionadoException(
 					String.format("El vehículo con la matrícula %s ya está estacionado", matricula));
 		}
 
