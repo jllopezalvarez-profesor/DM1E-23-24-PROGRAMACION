@@ -15,7 +15,7 @@ public class PrimeraConexion {
         System.out.printf("Son las %s y este es el primer programa en IntelliJ Idea", LocalDateTime.now());
 
         try (Connection connection = DriverManager.getConnection(CADENA_CONEXION, USUARIO, PASSWORD)) {
-
+            System.out.printf("El tipo dinámico de la conexión es %s\n", connection.getClass().getName());
 
         }
 
