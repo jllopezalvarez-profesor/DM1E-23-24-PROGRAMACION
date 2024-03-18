@@ -4,8 +4,8 @@ import java.sql.*;
 
 public class Ejercicio02 {
     private static final String CAD_CONEXION = "jdbc:mariadb://localhost/sakila";
-    private static final String USER = "root";
-    private static final String PASS = "password";
+    private static final String USER = "sakilauser";
+    private static final String PASS = "pwdsakilauser";
 
     private static final String QUERY = """
             select title,
@@ -38,9 +38,9 @@ public class Ejercicio02 {
                         String rating = resultSet.getString("rating");
                         String description = resultSet.getString("description");
 
-//                        if (originalLanguage == null){
-//                            originalLanguage = "Desconocido";
-//                        }
+                        if (originalLanguage == null){
+                            originalLanguage = "Desconocido";
+                        }
 
                         System.out.printf("%s - %d - %s - %s - %s\n%s\n", title, year, language, originalLanguage, rating, description);
                         System.out.println("_".repeat(100));

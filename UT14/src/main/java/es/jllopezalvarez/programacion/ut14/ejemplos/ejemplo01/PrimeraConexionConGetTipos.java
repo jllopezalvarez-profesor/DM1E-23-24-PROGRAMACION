@@ -6,8 +6,8 @@ import java.time.LocalDateTime;
 public class PrimeraConexionConGetTipos {
     // URL de conexión: "jdbc:tipo_de_servidor://maquina[:puerto]/base_de_datos
     private static final String CADENA_CONEXION = "jdbc:mariadb://localhost/sakila";
-    private static final String USUARIO = "root";
-    public static final String PASSWORD = "password";
+    private static final String USUARIO = "sakilauser";
+    public static final String PASSWORD = "pwdsakilauser";
 
     private static final String SQL_QUERY_01 = "select country, last_update, country_id from country";
 
