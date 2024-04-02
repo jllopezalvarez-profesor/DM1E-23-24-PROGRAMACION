@@ -31,17 +31,19 @@ public class Ejercicio09 {
             }
 
             // Preguntar país
-            // Scanner
+            System.out.println("Introduce el nombre del país de la nueva ciudad");
+            String nombrePais = scanner.nextLine();
 
             // Comprobar si existe país
-            // SELECT - resultet (resgistro del país)
+            if (!existePais(nombrePais, connection)) {
+                // Crear el país
+                System.out.println("Tengo que crear país");
+            } else {
+                System.out.println("Ya existe");
+            }
 
-            // Si existe país quedarme con su ID
-            // Acceder al resultset y quedarme con country_id
+            // recuperar ID del país
 
-            // Si no existe país, crear país y recuperar su ID
-            // INSERT (crear el país)
-            // SELECT (recuperar el id del país creado)
 
             // Crear ciudad con el ID del país (ya existente o el creado nuevo)
             // INSERT (en tabla city)
@@ -49,6 +51,15 @@ public class Ejercicio09 {
         }
 
 
+    }
+
+    private static boolean existePais(String nombrePais, Connection connection) throws SQLException {
+        try(PreparedStatement ps = connection.prepareStatement(SQL_CHECK_COUNTRY)){
+            ps.setString(1, nombrePais);
+            try(ResultSet resultSet = ps.executeQuery()){
+                return resultSet.isBeforeFirst();
+            }
+        }
     }
 
     private static boolean existeCiudad(String nombreCiudad, Connection connection) throws SQLException {
