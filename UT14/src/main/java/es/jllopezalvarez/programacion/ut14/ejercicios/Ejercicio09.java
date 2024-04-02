@@ -1,8 +1,6 @@
 package es.jllopezalvarez.programacion.ut14.ejercicios;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Scanner;
 
 public class Ejercicio09 {
@@ -23,11 +21,11 @@ public class Ejercicio09 {
         // Abrir conexión
         try (Connection connection = DriverManager.getConnection(CONNECTION_STRING, USR, PWD)) {
             // Preguntar ciudad
-            // Scanner
+            System.out.println("Introduce el nombre de la nueva ciudad");
+            String nuevaCiudad = scanner.nextLine();
 
             // Comprobar si existe la ciudad
-            // SELECT - resultset (count / registro de la ciudad)
-            if (){
+            if (existeCiudad(nuevaCiudad, connection)) {
                 System.out.println("Ya existe una ciudad con el nombre especificado");
                 return;
             }
@@ -51,5 +49,14 @@ public class Ejercicio09 {
         }
 
 
+    }
+
+    private static boolean existeCiudad(String nombreCiudad, Connection connection) throws SQLException {
+        try(PreparedStatement ps = connection.prepareStatement(SQL_CHECK_CITY)){
+            ps.setString(1, nombreCiudad);
+            try(ResultSet resultSet = ps.executeQuery()){
+                return resultSet.isBeforeFirst();
+            }
+        }
     }
 }
