@@ -48,11 +48,19 @@ public class Ejercicio09 {
             System.out.println("Usando el código de país: " + idPais);
 
             // Crear ciudad con el ID del país (ya existente o el creado nuevo)
-            // INSERT (en tabla city)
+            crearCiudad(nuevaCiudad, idPais, connection);
 
         }
 
 
+    }
+
+    private static void crearCiudad(String nombreCiudad, int idPais, Connection connection) throws SQLException {
+        try(PreparedStatement ps = connection.prepareStatement(DML_CREATE_CITY)){
+            ps.setString(1, nombreCiudad);
+            ps.setInt(2, idPais);
+            ps.executeUpdate();
+        }
     }
 
     private static int getIdPais(String nombrePais, Connection connection) throws SQLException {
