@@ -37,13 +37,15 @@ public class Ejercicio09 {
             // Comprobar si existe país
             if (!existePais(nombrePais, connection)) {
                 // Crear el país
-                System.out.println("Tengo que crear país");
+                System.out.println("No existe el país con el nombre indicado, se crea uno nuevo");
+                crearPais(nombrePais, connection);
             } else {
-                System.out.println("Ya existe");
+                System.out.println("Ya existe un país con el nombre indicado, se usará este país existente");
             }
 
             // recuperar ID del país
-
+            int idPais = getIdPais(nombrePais, connection);
+            System.out.println("Usando el código de país: " + idPais);
 
             // Crear ciudad con el ID del país (ya existente o el creado nuevo)
             // INSERT (en tabla city)
@@ -51,6 +53,28 @@ public class Ejercicio09 {
         }
 
 
+    }
+
+    private static int getIdPais(String nombrePais, Connection connection) throws SQLException {
+        try(PreparedStatement ps = connection.prepareStatement(SQL_CHECK_COUNTRY)){
+            ps.setString(1, nombrePais);
+            try(ResultSet resultSet = ps.executeQuery()){
+                if (resultSet.isBeforeFirst()){
+                    resultSet.next();
+                    return resultSet.getInt("country_id");
+                }
+                else{
+                    throw new RuntimeException("No se ha encontrado el país en la BBDD");
+                }
+            }
+        }
+    }
+
+    private static void crearPais(String nombrePais, Connection connection) throws SQLException {
+        try(PreparedStatement ps = connection.prepareStatement(DML_CREATE_COUNTRY)){
+            ps.setString(1, nombrePais);
+            ps.executeUpdate();
+        }
     }
 
     private static boolean existePais(String nombrePais, Connection connection) throws SQLException {
