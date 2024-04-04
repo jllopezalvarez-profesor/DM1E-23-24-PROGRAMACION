@@ -15,5 +15,6 @@ public class Programa {
 
         List<Actor> actores = actorDao.getAll();
 
+        System.out.printf("Se han leído %d actores\n", actores.size());
     }
 }
