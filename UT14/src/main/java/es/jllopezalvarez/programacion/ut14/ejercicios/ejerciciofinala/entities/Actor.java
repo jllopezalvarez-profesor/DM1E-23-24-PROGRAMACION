@@ -14,6 +14,12 @@ public class Actor implements Comparable<Actor> {
         this.lastName = lastName;
     }
 
+    public Actor(int actorId) {
+        this.actorId = actorId;
+        this.firstName = "";
+        this.lastName = "";
+    }
+
     public int getActorId() {
         return actorId;
     }
