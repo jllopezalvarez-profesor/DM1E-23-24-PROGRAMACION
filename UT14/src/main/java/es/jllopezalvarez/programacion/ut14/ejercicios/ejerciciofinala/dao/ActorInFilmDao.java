@@ -1,25 +1,26 @@
 package es.jllopezalvarez.programacion.ut14.ejercicios.ejerciciofinala.dao;
 
 import es.jllopezalvarez.programacion.ut14.ejercicios.ejerciciofinala.entities.Actor;
+import es.jllopezalvarez.programacion.ut14.ejercicios.ejerciciofinala.entities.ActorInFilm;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActorDao {
-    private static final String SQL_GET_ALL = "select actor_id, first_name, last_name from actor";
+public class ActorInFilmDao {
+    private static final String SQL_GET_ALL = "select actor_id, film_id from film_actor";
     private final String connectionString;
     private final String username;
     private final String password;
 
-    public ActorDao(String connectionString, String username, String password) {
+    public ActorInFilmDao(String connectionString, String username, String password) {
         this.connectionString = connectionString;
         this.username = username;
         this.password = password;
     }
 
-    public List<Actor> getAll(){
-        List<Actor> actors = new ArrayList<>();
+    public List<ActorInFilm> getAll(){
+        List<ActorInFilm> actorInFilms = new ArrayList<>();
 
         // 1.- Abrir conexión
         // 2.- Crear prepared statement
@@ -32,16 +33,15 @@ public class ActorDao {
 
             while(rs.next()){
                 int actorId = rs.getInt("actor_id");
-                String firstName = rs.getString("first_name");
-                String lastName = rs.getString("last_name");
-                actors.add(new Actor(actorId, firstName, lastName));
+                int filmId = rs.getInt("film_id");
+                actorInFilms.add(new ActorInFilm(actorId, filmId));
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Error al obtener los actores", e);
+            throw new RuntimeException("Error al obtener los actores en películas", e);
         }
 
 
-        return actors;
+        return actorInFilms;
     }
 
 
