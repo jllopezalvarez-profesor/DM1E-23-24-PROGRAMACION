@@ -1,0 +1,1 @@
+Este es el fichero de texto que vamos a leer con un FileReader.
