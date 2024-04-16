@@ -1,0 +1,5 @@
+Hola 
+Esto es un fichero
+Con algo más de texto
+para probar
+FIN

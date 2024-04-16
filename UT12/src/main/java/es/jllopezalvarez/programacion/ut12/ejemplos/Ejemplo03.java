@@ -23,7 +23,6 @@ public class Ejemplo03 {
             throw new RuntimeException(e);
         }
 
-
         System.out.println("-".repeat(100));
 
         // Leer de cinco en cinco letras
