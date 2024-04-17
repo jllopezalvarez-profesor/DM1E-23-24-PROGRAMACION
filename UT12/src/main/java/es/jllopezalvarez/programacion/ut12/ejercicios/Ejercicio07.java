@@ -4,10 +4,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Ejercicio07 {
     private static final char CHAR_INICIAL = 0x20;
@@ -21,6 +18,7 @@ public class Ejercicio07 {
     public static void main(String[] args) {
         List<Character> caracteres = generarAleatorios(CANTIDAD_CARACTERES, CHAR_INICIAL, CHAR_FINAL);
         caracteres.sort(null);
+//        Collections.sort(caracteres);
 
         System.out.println("Dime el nombre del fichero (puede incluir carpetas)");
         String nombrefichero = scanner.nextLine();
@@ -28,11 +26,22 @@ public class Ejercicio07 {
         // Comprobar si existe
         File fichero = new File(nombrefichero);
         if (fichero.exists()){
-            System.out.println("El fichero indicado no existe");
+            System.out.println("El fichero indicado ya existe");
             return;
         }
 
-
+        // Como no existe, comprobamos si el directorio en el que hay que crearlo existe,
+        // para evitar un error al abrir el stream
+        File directorioDetino = fichero.getParentFile();
+        if (directorioDetino.exists()){
+            if (!directorioDetino.isDirectory()){
+                System.out.printf("%s no es un directorio\n", directorioDetino);
+                return;
+            }
+        } else {
+            // Como no existe, lo creo
+            directorioDetino.mkdirs();
+        }
 
         // Crear stream de escritura
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fichero))){
