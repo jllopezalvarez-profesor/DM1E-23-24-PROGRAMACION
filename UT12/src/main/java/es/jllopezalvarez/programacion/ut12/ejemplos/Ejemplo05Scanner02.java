@@ -26,7 +26,6 @@ public class Ejemplo05Scanner02 {
                 System.out.println(scanner.nextLine());
             }
 
-            scanner.findInLine()
 
 
         }
