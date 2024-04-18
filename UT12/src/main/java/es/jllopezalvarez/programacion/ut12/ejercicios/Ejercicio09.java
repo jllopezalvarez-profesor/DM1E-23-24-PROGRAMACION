@@ -15,25 +15,23 @@ public class Ejercicio09 {
         Path ficheroCifrado = Path.of("ejercicios", "09", "ficheroCifrado.txt");
         Path ficheroDescifrado = Path.of("ejercicios", "09", "ficheroDescifrado.txt");
 
-        int claveCifrado = 20;
+        int claveCifrado = 10;
 
         cifrar(ficheroOriginal, ficheroCifrado, claveCifrado);
-
-        
-
+        descifrar(ficheroCifrado, ficheroDescifrado, claveCifrado);
 
 
     }
 
 
-    private static void cifrar(Path ficheroOriginal, Path ficheroDestino, int claveCifrado) {
+    private static void cifrar(Path ficheroOriginal, Path ficheroCifrado, int claveCifrado) {
 
-        if (claveCifrado > (LIMITE_SUPERIOR - LIMITE_INFERIOR)){
+        if (claveCifrado > (LIMITE_SUPERIOR - LIMITE_INFERIOR)) {
             throw new IllegalArgumentException(String.format("La clave de cifrado no puede ser mayor que %d", (LIMITE_SUPERIOR - LIMITE_INFERIOR)));
         }
 
         try (BufferedReader reader = new BufferedReader(new FileReader(ficheroOriginal.toFile()));
-             BufferedWriter writer = new BufferedWriter(new FileWriter(ficheroDestino.toFile()))) {
+             BufferedWriter writer = new BufferedWriter(new FileWriter(ficheroCifrado.toFile()))) {
 
             // Forma "Tradicional" con lectura adelantada para un bucle de
             // lectura de fichero hasta que se termina
@@ -52,16 +50,45 @@ public class Ejercicio09 {
             int charOriginal = reader.read();
             while (charOriginal != -1) {
                 // Usar charOriginal para lo que tengamos que hacer
-                charOriginal = reader.read();
-                if (charOriginal < LIMITE_INFERIOR || charOriginal > LIMITE_SUPERIOR){
+                if (charOriginal < LIMITE_INFERIOR || charOriginal > LIMITE_SUPERIOR) {
                     writer.write(charOriginal);
-                } else{
+                } else {
                     int charCifrado = charOriginal + claveCifrado;
-                    if (charCifrado > LIMITE_SUPERIOR){
-                        charCifrado = LIMITE_INFERIOR + (charCifrado % (LIMITE_SUPERIOR + 1)) ;
+                    if (charCifrado > LIMITE_SUPERIOR) {
+                        charCifrado = LIMITE_INFERIOR + (charCifrado % (LIMITE_SUPERIOR + 1));
                     }
                     writer.write(charCifrado);
                 }
+                charOriginal = reader.read();
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+
+    private static void descifrar(Path ficheroCifrado, Path ficheroDescifrado, int claveCifrado) {
+        if (claveCifrado > (LIMITE_SUPERIOR - LIMITE_INFERIOR)) {
+            throw new IllegalArgumentException(String.format("La clave de cifrado no puede ser mayor que %d", (LIMITE_SUPERIOR - LIMITE_INFERIOR)));
+        }
+        try (BufferedReader reader = new BufferedReader(new FileReader(ficheroCifrado.toFile()));
+             BufferedWriter writer = new BufferedWriter(new FileWriter(ficheroDescifrado.toFile()))) {
+
+            int charCifrado = reader.read();
+            while (charCifrado != -1) {
+                if (charCifrado < LIMITE_INFERIOR || charCifrado > LIMITE_SUPERIOR) {
+                    writer.write(charCifrado);
+                } else {
+                    int charDescifrado = charCifrado - claveCifrado;
+                    if (charDescifrado < LIMITE_INFERIOR){
+                        charDescifrado = LIMITE_SUPERIOR + (charDescifrado - LIMITE_INFERIOR) + 1;
+                    }
+                    writer.write(charDescifrado);
+                }
+                charCifrado = reader.read();
             }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
