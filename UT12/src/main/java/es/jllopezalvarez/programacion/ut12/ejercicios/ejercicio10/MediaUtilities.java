@@ -18,7 +18,7 @@ public class MediaUtilities {
     public static Media newRandomMedia(){
         return new Media(
                 currentId++,
-                "Título de la película",
+                faker.oscarMovie().movieName(),
                 faker.name().fullName(),
                 faker.company().name(),
                 faker.date().past(365*20, 365, TimeUnit.DAYS).toLocalDateTime().toLocalDate(),

@@ -1,0 +1,6 @@
+Valor cuando se usa print:
+853434432
+Valor cuando se usa write:
+恀
+Valor cuando se usa write con string:
+Hola

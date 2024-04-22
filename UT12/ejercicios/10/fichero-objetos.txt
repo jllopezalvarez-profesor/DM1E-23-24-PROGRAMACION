@@ -1,0 +1,10 @@
+1|The Favourite|Mr. Laurice Miller|Howell-Walter|2020-02-23|PELICULA
+2|American Sniper|Alexandria Howell|Ankunding, Mills and Littel|2011-11-03|PELICULA
+3|Parasite|Richie Hayes|Douglas and Sons|2004-08-29|PELICULA
+4|Green Book|Marcelene Wisozk|Kirlin, Durgan and Dach|2007-10-31|PELICULA
+5|Joker|Jospeh Walter|Kilback-Kuvalis|2005-01-26|MUSICA
+6|12 Years a Slave|Jae Russel|Keebler Group|2022-06-03|PELICULA
+7|The Favourite|Leonora Raynor|Corwin, Rempel and Toy|2022-04-03|MUSICA
+8|12 Years a Slave|Jamaal Rutherford|Cartwright Group|2010-02-25|PELICULA
+9|Lady Bird|Brittani Lynch|Turner-Morissette|2004-11-17|PELICULA
+10|The Martian|Joann Bogisich|Lueilwitz LLC|2013-06-25|PELICULA
