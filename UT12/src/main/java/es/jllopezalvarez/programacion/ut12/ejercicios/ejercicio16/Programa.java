@@ -19,6 +19,8 @@ public class Programa {
 
         alumno = createAlumnoAleatorio();
 
+        System.out.println(alumno);
+
         aniadirAlumnoConHerenciaDeObjectStream(alumno, PATH_FICHERO_ALUMNOS);
 
         mostrarAlumnos(PATH_FICHERO_ALUMNOS);
@@ -26,18 +28,23 @@ public class Programa {
     }
 
     private static void aniadirAlumnoConHerenciaDeObjectStream(Alumno alumno, Path pathFicheroAlumnos) {
-
-        File ficheroAlumnos = pathFicheroAlumnos.toFile();
-
-        boolean writeHeader = !ficheroAlumnos.exists();
-
-        try (AppendOnlyObjectOutputStream oos = new AppendOnlyObjectOutputStream(new BufferedOutputStream(new FileOutputStream(ficheroAlumnos, true)), writeHeader)) {
+        try (ObjectOutputStream oos = abrirFicheroParaEscribir(pathFicheroAlumnos)) {
             // Escribo el nuevo alumno
             oos.writeObject(alumno);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
+
+    private static ObjectOutputStream abrirFicheroParaEscribir(Path pathFicheroAlumnos) throws IOException {
+        File ficheroAlumnos = pathFicheroAlumnos.toFile();
+        if (ficheroAlumnos.exists()){
+            return new AppendOnlyObjectOutputStream(new BufferedOutputStream(new FileOutputStream(pathFicheroAlumnos.toFile())));
+        } else {
+            return  new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(pathFicheroAlumnos.toFile())));
+        }
+    }
+
 
     private static void crearDirectorioSiNoExiste(Path pathFicheroAlumnos) {
         File directorioPadre = pathFicheroAlumnos.toFile().getParentFile();
@@ -128,21 +135,15 @@ public class Programa {
 
     private static class AppendOnlyObjectOutputStream extends ObjectOutputStream {
 
-        private final boolean writeHeader;
-
-        public AppendOnlyObjectOutputStream(OutputStream out, boolean writeHeader) throws IOException {
+        public AppendOnlyObjectOutputStream(OutputStream out) throws IOException {
             super(out);
-            this.writeHeader = writeHeader;
         }
 
-        protected AppendOnlyObjectOutputStream(boolean writeHeader) throws IOException, SecurityException {
-            this.writeHeader = writeHeader;
+        protected AppendOnlyObjectOutputStream() throws IOException, SecurityException {
         }
 
         @Override
         protected void writeStreamHeader() throws IOException {
-            if (writeHeader)
-                super.writeStreamHeader();
         }
     }
 }
