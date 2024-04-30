@@ -1,5 +1,6 @@
 package es.jllopezalvarez.programacion.ut12.ejercicios.ejercicio1920;
 
+import java.io.*;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -11,6 +12,8 @@ public class Exportar {
     private static final String CONNECTION_STRING = "jdbc:mariadb://localhost/sakila";
     private static final String USR = "sakilauser";
     private static final String PWD = "pwdsakilauser";
+
+    private static final String PATH_FICHERO_DATOS = "ejercicios/ejercicio1920/customers.dat";
 
     private static final String SQL_CUSTOMERS = """
             select customer.customer_id,
@@ -31,7 +34,33 @@ public class Exportar {
                 .comparing(Customer::getFirstName)
                 .thenComparing(Customer::getLastName));
 
-        customers.forEach(System.out::println);
+        guardarCustomersEnFichero(customers, PATH_FICHERO_DATOS);
+
+
+//        customers.forEach(System.out::println);
+    }
+
+    private static void guardarCustomersEnFichero(List<Customer> customers, String pathFicheroDatos) {
+
+        File ficheroDatos = new File(pathFicheroDatos);
+        if (ficheroDatos.exists()) {
+            throw new RuntimeException("El fichero de clientes ya existe.");
+        }
+
+        // Fuerzo creación de carpetas para el fichero
+        ficheroDatos.getParentFile().mkdirs();
+
+        try (ObjectOutputStream stream = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(ficheroDatos)))) {
+            for (Customer customer : customers) {
+                stream.writeObject(customer);
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
 
     private static List<Customer> leerCustomersBd(int minId, int maxId) throws SQLException {
@@ -81,5 +110,6 @@ public class Exportar {
 
         return customers;
     }
+
 
 }
