@@ -20,14 +20,9 @@ public class FormPrincipal extends JFrame {
         this.setVisible(true);
 
 
-        btnCopiarDatos.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                tfNombreApellidos.setText(String.format("%s %s"
-                        , tfNombre.getText()
-                        , tfApellidos.getText()));
-            }
-        });
+        btnCopiarDatos.addActionListener(e -> tfNombreApellidos.setText(String.format("%s %s"
+                , tfNombre.getText()
+                , tfApellidos.getText())));
         btnSalir.addActionListener(e -> FormPrincipal.this.dispose());
 
     }
