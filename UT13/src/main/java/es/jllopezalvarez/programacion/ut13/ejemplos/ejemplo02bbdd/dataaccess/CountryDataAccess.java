@@ -14,8 +14,9 @@ import java.util.Optional;
 public class CountryDataAccess {
 
     private static final String SQL_FIND_BY_ID = "select country_id, country, last_update from country where country_id = ?";
-    private static final String SQL_FIND_ALL = "select country_id, country, last_update from country order by country_id";
+    private static final String SQL_FIND_ALL = "select country_id, country, last_update from country order by country";
     private static final String SQL_DELETE_BY_ID = "delete from country where country_id = ?";
+    private static final String SQL_CREATE = "insert into country(country) values (?)";
 
     public static Optional<Country> findById(int countryId) {
         try (Connection connection = DataSource.getConnection();
@@ -62,9 +63,21 @@ public class CountryDataAccess {
                 throw new SQLException(String.format("El número de filas eliminado es distinto de uno. Se eliminaron %d filas", numRows));
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Error al buscar un país", e);
+            throw new RuntimeException("Error al eliminar un país", e);
         }
     }
 
 
+    public static void save(String countryName) {
+        try (Connection connection = DataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(SQL_CREATE)) {
+            ps.setString(1, countryName);
+            int numRows = ps.executeUpdate();
+            if (numRows != 1) {
+                throw new SQLException(String.format("El número de filas creado es distinto de uno. Se crearon %d filas", numRows));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al crear un país", e);
+        }
+    }
 }
