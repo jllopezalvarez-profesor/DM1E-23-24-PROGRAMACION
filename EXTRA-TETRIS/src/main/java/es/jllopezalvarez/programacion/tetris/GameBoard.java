@@ -18,7 +18,13 @@ public class GameBoard {
         // Arrays.stream(board).forEach(row -> Arrays.fill(row, null));
 
         //TODO: Eliminar este tablero generado aleatoriamente.
-//        fillRandomBoard(this.board);
+        //fillRandomBoard(this.board);
+        //almostFillLastRow(this.board);
+    }
+
+    private void almostFillLastRow(Color[][] board) {
+        Arrays.fill(this.board[this.board.length-1], Color.RED);
+        this.board[this.board.length-1][0] = null;
     }
 
     private void fillRandomBoard(Color[][] board) {
@@ -43,7 +49,7 @@ public class GameBoard {
         // Vamos a recorrer de abajo hacia arriba
         int currentRowNum = this.board.length - 1;
         // Terminamos cuando hemos procesado la fila "0"
-        while (currentRowNum >= 0) {
+        while (currentRowNum > 0) {
             Color[] currentRow = this.board[currentRowNum];
             // Si hay algún cuadrado en la fila que es null, es que no está llena
             if (Arrays.stream(currentRow).anyMatch(Objects::isNull)) {
@@ -66,8 +72,8 @@ public class GameBoard {
 
     private void removeRow(int rowNum) {
         // "Bajamos" todas las filas por encima de la que queremos eliminar
-        for (int i = rowNum - 1; i >= 0; i--) {
-            this.board[i - 1] = this.board[i];
+        for (int i = rowNum - 1; i > 0; i--) {
+            this.board[i + 1] = this.board[i];
         }
         // Añadimos una fila nueva
         this.board[0] = new Color[Settings.COL_COUNT];

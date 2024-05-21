@@ -106,6 +106,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
                 // En ambos casos, tenemos que terminar el bucle de juego
                 // y salir del método "run", lo que finaliza el hilo de ejecución
                 System.out.println("Saliendo del bucle de juego");
+                e.printStackTrace();
                 this.endGameLoopRequested = true;
             }
         }
