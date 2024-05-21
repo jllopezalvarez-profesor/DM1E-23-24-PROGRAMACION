@@ -1,17 +1,13 @@
 package es.jllopezalvarez.programacion.tetris;
 
 import es.jllopezalvarez.programacion.tetris.tiles.Tile;
-import es.jllopezalvarez.programacion.tetris.tiles.TilePosition;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-public class GamePanel extends JPanel implements Runnable {
-
-    // TODO: eliminar estos dos atributos cuando tengamos más cosas de piezas implementadas
-    private int x = 0;
-    private int y = 0;
-
+public class GamePanel extends JPanel implements Runnable, KeyListener {
     //region Atributos para control del hilo para el bucle del juego
     private Thread gameLoopThread;
     private boolean endGameLoopRequested = false;
@@ -26,8 +22,12 @@ public class GamePanel extends JPanel implements Runnable {
     //region Atributos para tablero de juego, pieza en juego, y posición de la pìeza
     GameBoard gameBoard = new GameBoard();
     Tile tile = Tile.createRandomTile();
-    TilePosition tilePosition = tile.getStartingPosition();
+    private long lastTileMoveCheck = 0;
+
     //endregion
+
+    public GamePanel(){
+    }
 
     //region Métodos de bucle de juego y dibujado de elementos
     @Override
@@ -48,14 +48,7 @@ public class GamePanel extends JPanel implements Runnable {
         gameBoard.paint(g2d);
 
         // Dibujamos la pieza
-        tile.paint(tilePosition, g2d);
-
-        // TODO: eliminar esto cuando tengamos más cosas de piezas implementadas
-        g2d.setColor(Color.yellow);
-        g2d.drawRect(x, y, 50, 50);
-
-
-
+        tile.paint(g2d);
 
 
         if (Settings.SHOW_FPS) {
@@ -81,23 +74,15 @@ public class GamePanel extends JPanel implements Runnable {
             try {
                 // Mostramos FPS si está activo el setting
                 if (Settings.SHOW_FPS) {
-                    countAndShowFps();
+                    countFps();
                 }
 
                 // Limitamos los FPS para no consumir más recursos de los necesarios
                 limitFps();
 
-                // TODO: eliminar esto cuando tengamos más cosas de piezas implementadas
-                // De momento movemos el cuadrado por pantalla. Ya haremos cosas con piezas y tablero.
-                // Esto lo sacaremos a un método update, probablemente.
-                x++;
-                if (x > this.getWidth()) {
-                    this.x = 0;
-                }
-                y++;
-                if (y > this.getHeight()) {
-                    this.y = 0;
-                }
+                // Realizar cálculos para mover piezas, etc.
+                updateGame();
+
 
                 // Llamamos a repaint() del componente. Este método se encargará de llamar de
                 // forma adecuada al método paintComponent, que usamos para "pintar" el juego.
@@ -127,6 +112,21 @@ public class GamePanel extends JPanel implements Runnable {
 
     }
 
+    private void updateGame() {
+        long elapsed = System.nanoTime() - this.lastTileMoveCheck;
+        if (elapsed > Settings.STEP_TIME){
+            if (!this.tile.moveOneSquareDown(this.gameBoard)){
+                this.gameBoard.consolidateTile(this.tile);
+                this.gameBoard.removeCompleteRows();
+                this.tile = Tile.createRandomTile();
+            }
+            this.lastTileMoveCheck = System.nanoTime();
+        }
+
+
+
+    }
+
     private static void limitFps() throws InterruptedException {
         // Esto no es completamente correcto.
         // El número de frames por segundo no depende solo del cálculo hecho con constantes
@@ -137,7 +137,7 @@ public class GamePanel extends JPanel implements Runnable {
         Thread.sleep(Settings.FRAME_DURATION_MS);
     }
 
-    private void countAndShowFps() {
+    private void countFps() {
         // En cada ciclo del bucle de juego se incrementa el contador de FPS
         this.fpsCount++;
         // Calculamos cuanto tiempo pasó desde la última vez que comprobamos FPS
@@ -155,6 +155,11 @@ public class GamePanel extends JPanel implements Runnable {
 
     //region Métodos de control del bucle de juego
     public void startGameLoop() {
+
+        this.setFocusable(true);
+        this.addKeyListener(this);
+
+
         // Creamos un hilo para el bucle del juego.
         // Este hilo es el que se encargará de actualizar
         // los elementos de juego, y llamar al método de repintado
@@ -172,6 +177,42 @@ public class GamePanel extends JPanel implements Runnable {
         // "demonio", que se cierra cuando el hilo principal de la aplicación
         // se cierra.
         this.gameLoopThread.interrupt();
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_A:
+            case KeyEvent.VK_LEFT:
+                this.tile.moveOneSquareLeft(this.gameBoard);
+                break;
+            case KeyEvent.VK_D:
+            case KeyEvent.VK_RIGHT:
+                this.tile.moveOneSquareRight(this.gameBoard);
+                break;
+            case KeyEvent.VK_W:
+            case KeyEvent.VK_UP:
+                this.tile.rotate(this.gameBoard);
+                break;
+            case KeyEvent.VK_S:
+            case KeyEvent.VK_DOWN:
+                if (!this.tile.moveOneSquareDown(this.gameBoard)){
+                    this.gameBoard.consolidateTile(this.tile);
+                    this.gameBoard.removeCompleteRows();
+                    this.tile = Tile.createRandomTile();
+                }
+                break;
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
     }
 
     //endregion

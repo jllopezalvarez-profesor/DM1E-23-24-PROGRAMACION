@@ -1,5 +1,8 @@
 package es.jllopezalvarez.programacion.tetris;
 
+import es.jllopezalvarez.programacion.tetris.tiles.Tile;
+import es.jllopezalvarez.programacion.tetris.tiles.TilePosition;
+
 import java.awt.*;
 import java.util.Arrays;
 import java.util.Objects;
@@ -15,7 +18,7 @@ public class GameBoard {
         // Arrays.stream(board).forEach(row -> Arrays.fill(row, null));
 
         //TODO: Eliminar este tablero generado aleatoriamente.
-        fillRandomBoard(this.board);
+//        fillRandomBoard(this.board);
     }
 
     private void fillRandomBoard(Color[][] board) {
@@ -85,4 +88,17 @@ public class GameBoard {
         }
     }
 
+    public void consolidateTile(Tile tile) {
+        TilePosition currentPosition = tile.getPosition();
+        boolean[][] currentMatrix = tile.getCurrentMatrix();
+
+        for (int row = 0; row < currentMatrix.length; row++) {
+            for (int col = 0; col < currentMatrix[0].length; col++) {
+                if (currentMatrix[row][col]) {
+                    this.board[currentPosition.getRow() + row][currentPosition.getCol() + col] = tile.getColor();
+                }
+            }
+        }
+
+    }
 }

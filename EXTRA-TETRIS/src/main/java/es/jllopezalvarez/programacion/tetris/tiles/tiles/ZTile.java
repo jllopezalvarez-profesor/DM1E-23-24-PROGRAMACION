@@ -28,7 +28,6 @@ public class ZTile extends Tile {
             {true, false, false}
     };
 
-
     @Override
     public Color getColor() {
         return COLOR;
