@@ -1,12 +1,14 @@
 package es.jllopezalvarez.programacion.tetris;
 
-import es.jllopezalvarez.programacion.tetris.tiles.JTile;
+import es.jllopezalvarez.programacion.tetris.tiles.Tile;
+import es.jllopezalvarez.programacion.tetris.tiles.TilePosition;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class GamePanel extends JPanel implements Runnable {
 
+    // TODO: eliminar estos dos atributos cuando tengamos más cosas de piezas implementadas
     private int x = 0;
     private int y = 0;
 
@@ -15,23 +17,22 @@ public class GamePanel extends JPanel implements Runnable {
     private boolean endGameLoopRequested = false;
     //endregion
 
-    //region Control y marcador de FPS
+    //region Atributos para control de FPS e indicador de FPS
     long fpsCount = 0;
     long lastCheckFps = System.nanoTime();
     private long currentFps = 0;
     //endregion
 
+    //region Atributos para tablero de juego, pieza en juego, y posición de la pìeza
+    GameBoard gameBoard = new GameBoard();
+    Tile tile = Tile.createRandomTile();
+    TilePosition tilePosition = tile.getStartingPosition();
+    //endregion
 
-    JTile tile = new JTile();
-
-
-    public GamePanel() {
-
-
-    }
-
+    //region Métodos de bucle de juego y dibujado de elementos
     @Override
     protected void paintComponent(Graphics g) {
+        // Llamamos al método de la superclase para que pinte el fondo
         super.paintComponent(g);
 
         // Convertimos el objeto a Graphics2D para tener más métodos a nuestra disposición
@@ -43,11 +44,19 @@ public class GamePanel extends JPanel implements Runnable {
             g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         }
 
+        // Dibujamos el tablero
+        gameBoard.paint(g2d);
 
+        // Dibujamos la pieza
+        tile.paint(tilePosition, g2d);
+
+        // TODO: eliminar esto cuando tengamos más cosas de piezas implementadas
         g2d.setColor(Color.yellow);
         g2d.drawRect(x, y, 50, 50);
 
-        tile.paint(g2d);
+
+
+
 
         if (Settings.SHOW_FPS) {
             paintFps(g2d);
@@ -62,9 +71,8 @@ public class GamePanel extends JPanel implements Runnable {
         Font fpsFont = currentFont.deriveFont(currentFont.getSize() * 2f);
         g2d.setFont(fpsFont);
         // Dibujamos la fuente
-        g2d.drawString(String.format("%d FPS", this.currentFps), 10, getHeight() - 20);
+        g2d.drawString(String.format("%d FPS", this.currentFps), 10, 40);
     }
-
 
     @Override
     public void run() {
@@ -79,7 +87,9 @@ public class GamePanel extends JPanel implements Runnable {
                 // Limitamos los FPS para no consumir más recursos de los necesarios
                 limitFps();
 
+                // TODO: eliminar esto cuando tengamos más cosas de piezas implementadas
                 // De momento movemos el cuadrado por pantalla. Ya haremos cosas con piezas y tablero.
+                // Esto lo sacaremos a un método update, probablemente.
                 x++;
                 if (x > this.getWidth()) {
                     this.x = 0;
@@ -141,6 +151,9 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
+    //endregion
+
+    //region Métodos de control del bucle de juego
     public void startGameLoop() {
         // Creamos un hilo para el bucle del juego.
         // Este hilo es el que se encargará de actualizar
@@ -160,5 +173,7 @@ public class GamePanel extends JPanel implements Runnable {
         // se cierra.
         this.gameLoopThread.interrupt();
     }
+
+    //endregion
 
 }
