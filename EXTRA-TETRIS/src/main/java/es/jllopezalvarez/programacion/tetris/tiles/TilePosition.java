@@ -36,17 +36,7 @@ public class TilePosition {
         return new TilePosition(row, col + 1);
     }
 
-    public boolean overflowsLeft() {
-        return this.col < 0;
-    }
 
-    public boolean overflowsRight(int matrixWidth) {
-        return (this.col + matrixWidth-1) > (Settings.COL_COUNT - 1);
-    }
-
-    public boolean overflowsBottom(int matrixWidth) {
-        return (this.row + matrixWidth-1) > (Settings.ROW_COUNT - 1);
-    }
 
 
 }

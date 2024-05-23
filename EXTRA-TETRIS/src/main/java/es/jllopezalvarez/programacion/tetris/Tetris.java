@@ -10,7 +10,7 @@ public class Tetris {
     public static void main(String[] args) {
         // Habilitamos OpenGL para acelerar las funciones gráficas
         // Evita el movimiento "a saltos" cuando no tenemos el ratón sobre la ventana
-        enableOpenGL();
+//        enableOpenGL();
 
         // Creamos el panel de juego
         GamePanel gamePanel = createGamePanel();
@@ -45,6 +45,8 @@ public class Tetris {
         window.add(gamePanel);
         window.pack();
         window.setResizable(false);
+        // Centrar en pantalla
+        window.setLocationRelativeTo(null);
 
         window.addWindowListener(new WindowAdapter() {
             @Override

@@ -23,8 +23,8 @@ public class GameBoard {
     }
 
     private void almostFillLastRow(Color[][] board) {
-        Arrays.fill(this.board[this.board.length-1], Color.RED);
-        this.board[this.board.length-1][0] = null;
+        Arrays.fill(this.board[this.board.length - 1], Color.RED);
+        this.board[this.board.length - 1][0] = null;
     }
 
     private void fillRandomBoard(Color[][] board) {
@@ -72,7 +72,8 @@ public class GameBoard {
 
     private void removeRow(int rowNum) {
         // "Bajamos" todas las filas por encima de la que queremos eliminar
-        for (int i = rowNum - 1; i > 0; i--) {
+        // TODO: revisar este método porque no está limpiando correctamente las líneas superiores
+        for (int i = rowNum - 1; i >= 0; i--) {
             this.board[i + 1] = this.board[i];
         }
         // Añadimos una fila nueva
@@ -106,5 +107,9 @@ public class GameBoard {
             }
         }
 
+    }
+
+    public boolean isEmpty(int row, int col) {
+        return this.board[row][col] == null;
     }
 }

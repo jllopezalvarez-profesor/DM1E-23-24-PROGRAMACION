@@ -165,6 +165,15 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         // Este hilo es el que se encargará de actualizar
         // los elementos de juego, y llamar al método de repintado
         this.gameLoopThread = new Thread(this);
+
+        this.gameLoopThread.setUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+            @Override
+            public void uncaughtException(Thread t, Throwable e) {
+                System.out.println("Error en game loop");
+                e.printStackTrace(System.out);
+            }
+        });
+
         // Los hilos se lanzan con "start()". Al llamar a start,
         // se lanza el método "run" del hilo.
         this.gameLoopThread.start();
